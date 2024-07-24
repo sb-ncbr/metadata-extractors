@@ -13,6 +13,33 @@ This code is also deployed at https://gmxmetadump.biodata.ceitec.cz/, where it i
 
 How to use the `Gromacs Metadata Extractor` software.
 
+### Docker container
+
+#### Build a container
+```bash
+docker build -t gmxdump-container .
+```
+
+#### Run the container with mounted data folder
+
+##### For interactive run
+```
+docker run -v /path/to/your/tpr_files:/data -it gmx-container
+```
+
+and then
+
+```
+python3 /opt/gmx-dump/extract.py --tpr_files /data/your_simulation.tpr
+```
+
+##### For non-interactive
+
+```
+docker run --rm -v /path/to/your/tpr_files:/data gmxdump-container python3 /opt/gmx-dump/extract.py --tpr_files /data/your_simulation.tpr
+```
+
+
 ### Basic usage from CLI
 
 ```bash
